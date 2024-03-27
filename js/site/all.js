@@ -457,20 +457,20 @@
       console.log(dataObject);
 
       if (dataObject.category === 'arrangement') {
-      //   newItem = {
-      //     type: 'floral',
-      //     storage: 'cool',
-      //     name: dataObject.itemname,
-      //     vase: dataObject.vasetype,
-      //     quantity: dataObject.qty,
-      //     logItem: function() {
-      //       console.log('%c' + this.name, 'font-weight: bold');
-      //       for (let prop in this){
-      //         console.log(' ', prop, ': ', this[prop]);
-      //       }
-      //     }
-      // }
-      newItem = new Arrangement(dataObject.itemname, dataObject.vasetype, dataObject.qty)
+        // newItem = {
+        //   type: 'floral',
+        //   storage: 'cool',
+        //   name: dataObject.itemname,
+        //   vase: dataObject.vasetype,
+        //   quantity: dataObject.qty,
+        //   logItem: function() {
+        //     console.log('%c' + this.name,'font-weight: bold');
+        //     for (let prop in this) {
+        //       console.log(' ', prop, ': ', this[prop])
+        //     }
+        //   }
+        // }
+        newItem = new Arrangement(dataObject.itemname, dataObject.vasetype, dataObject.qty);
       } else if (dataObject.category === 'live') {
         // newItem = {
         //   type: 'floral',
@@ -479,13 +479,13 @@
         //   pot: dataObject.pottype,
         //   quantity: dataObject.qty,
         //   logItem: function() {
-        //     console.log('%c' + this.name, 'font-weight: bold');
-        //     for (let prop in this){
-        //       console.log(' ', prop, ': ', this[prop]);
+        //     console.log('%c' + this.name,'font-weight: bold');
+        //     for (let prop in this) {
+        //       console.log(' ', prop, ': ', this[prop])
         //     }
         //   }
         // }
-        newItem = new Live(dataObject.name, dataObject.pottype, dataObject.qty);
+        newItem = new Live(dataObject.itemname, dataObject.pottype, dataObject.qty);
       } else if (dataObject.category === 'bouquet') {
         if ($.cookie('bouquetCount')) {
           $.cookie('bouquetCount', parseInt($.cookie('bouquetCount')) + 1);
@@ -493,15 +493,15 @@
           $.cookie('bouquetCount', 1)
         }
         // newItem = {
-        //   type: "floral",
-        //   storage: "cool",
+        //   type: 'floral',
+        //   storage: 'cool',
         //   name: dataObject.category,
         //   vase: dataObject.vasetype,
         //   flowers: {},
         //   logItem: function() {
-        //     console.log('%c' + this.name, 'font-weight: bold');
-        //     for (let prop in this){
-        //       console.log(' ', prop, ': ', this[prop]);
+        //     console.log('%c' + this.name,'font-weight: bold');
+        //     for (let prop in this) {
+        //       console.log(' ', prop, ': ', this[prop])
         //     }
         //   }
         // }
@@ -520,15 +520,15 @@
               // newItem.flowers[key] = {};
               // newItem.flowers[key][stemName] = dataObject[item];
               // newItem.flowers[key].type = 'floral';
-              newItem.flowers.addStem(key, dataObject[item], dataObject['color' + stemType])
+              newItem.flowers.addStem(key, dataObject[item], dataObject['color' + stemType]);
             } else {
               // add new item specifying only name and quantity
-              //   newItem.flowers[key] = {
-              //     Default: dataObject[item],
-              //     type: 'floral'
-              //   }
-              // }
+              // newItem.flowers[key] = {
+              //   Default: dataObject[item],
+              //   type: 'floral'
+              // };
               newItem.flowers.addStem(key, dataObject[item]);
+            }
           }
         }
       }
@@ -644,55 +644,54 @@
   };
   function Arrangement(name, vase, quantity = 1) {
     this.type = 'floral';
-    this.storage = "cool";
+    this.storage = 'cool';
     this.name = name;
     this.vase = vase;
     this.quantity = quantity;
     this.logItem = function() {
-        console.log('%c' + this.name, 'font-weight: bold');
-        for (let prop in this){
-          console.log(' ', prop, ': ', this[prop]);
+      console.log('%c' + this.name,'font-weight: bold');
+      for (let prop in this) {
+        console.log(' ', prop, ': ', this[prop])
       }
-    }
-  };
+    };
+  }
   function Live(name, pot, quantity = 1) {
     this.type = 'floral';
-    this.storage = "warm";
+    this.storage = 'warm';
     this.name = name;
     this.pot = pot;
     this.quantity = quantity;
     this.logItem = function() {
-        console.log('%c' + this.name, 'font-weight: bold');
-        for (let prop in this){
-          console.log(' ', prop, ': ', this[prop]);
+      console.log('%c' + this.name,'font-weight: bold');
+      for (let prop in this) {
+        console.log(' ', prop, ': ', this[prop])
       }
-    }
-  };
+    };
+  }
   function Bouquet(name, vase) {
     this.type = 'floral';
-    this.storage = "cool";
+    this.storage = 'cool';
     this.name = name;
     this.vase = vase;
-    this.quantity = quantity;
     this.logItem = function() {
-        console.log('%c' + this.name, 'font-weight: bold');
-        for (let prop in this){
-          console.log(' ', prop, ': ', this[prop]);
+      console.log('%c' + this.name,'font-weight: bold');
+      for (let prop in this) {
+        console.log(' ', prop, ': ', this[prop])
       }
-    }
+    };
     this.flowers = {
-      addStem: function(name, quantity = 1, color = "Default") {
+      addStem: function(name, quantity = 1, color = 'Default') {
         this[name] = new Flower(quantity, color)
       }
     }
-  };
+  }
   function Flower(quantity, color) {
     this[color] = quantity;
     this.logItem = function() {
-      console.log('%c' + this.name, 'font-weight: bold');
-      for (let prop in this){
-        console.log(' ', prop, ': ', this[prop]);
+      console.log('%c' + this.name,'font-weight: bold');
+      for (let prop in this) {
+        console.log(' ', prop, ': ', this[prop])
       }
-    }
+    };
   }
 })();
